@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>김천용</title>
+
+    <style>
+
+        /* ==============================
+           폰트
+        ============================== */
+
+        @font-face {
+            font-family: "물방울체";
+            src: url("SSRO_WaterDrop_Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "페이퍼로지";
+            src: url("Paperlogy-4Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "페이퍼로지";
+            src: url("Paperlogy-5Medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "페이퍼로지";
+            src: url("Paperlogy-6SemiBold.ttf") format("truetype");
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+
+        /* ==============================
+           기본
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #eeeefe;
+            color: #262957;
+            font-family: "페이퍼로지", sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* ==============================
+           전체 페이지
+        ============================== */
+
+        .page {
+            position: relative;
+            width: 94%;
+            max-width: 1200px;
+            height: 820px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 7px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #8d9df0 0%,
+                    #aab6f5 55%,
+                    #bac4f7 68%,
+                    #7f8ed8 68%,
+                    #6878c4 100%
+                );
+
+            box-shadow:
+                0 12px 35px rgba(57, 63, 120, 0.12);
+        }
+
+
+        /* ==============================
+           밤하늘 별
+        ============================== */
+
+        .starry-sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 68%;
+            z-index: 4;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .starry-sky::before {
+            content: "";
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            border-radius: 50%;
+            background: #ffffff;
+
+            box-shadow:
+                55px 55px #ffffff,
+                120px 110px #e8ebff,
+                190px 42px #ffffff,
+                255px 145px #f1f2ff,
+                330px 75px #ffffff,
+                410px 125px #e5e8ff,
+                485px 50px #ffffff,
+                560px 160px #f1f2ff,
+                640px 85px #ffffff,
+                720px 135px #e9ebff,
+                805px 45px #ffffff,
+                875px 115px #f5f5ff,
+                950px 65px #e7eaff,
+                1030px 150px #ffffff,
+                1110px 80px #f1f2ff,
+
+                80px 210px #e8eaff,
+                155px 260px #ffffff,
+                235px 190px #f5f5ff,
+                315px 245px #e9ebff,
+                390px 205px #ffffff,
+                470px 275px #eef0ff,
+                550px 220px #ffffff,
+                625px 285px #e8eaff,
+                700px 200px #ffffff,
+                780px 260px #f3f4ff,
+                860px 220px #e8eaff,
+                940px 290px #ffffff,
+                1020px 230px #eef0ff,
+                1090px 270px #ffffff;
+
+            opacity: 0.75;
+        }
+
+        .starry-sky::after {
+            content: "✦  ✧  ·  ✦  ·  ✧  ✦";
+
+            position: absolute;
+            top: 55px;
+            left: 0;
+
+            width: 100%;
+
+            text-align: center;
+
+            color: #ffffff;
+            font-size: 15px;
+            letter-spacing: 75px;
+
+            opacity: 0.55;
+        }
+
+
+        /* ==============================
+           메인
+        ============================== */
+
+        .hero {
+            position: relative;
+            z-index: 10;
+
+            width: 650px;
+            max-width: 88%;
+
+            margin: 42px auto 0;
+
+            text-align: center;
+        }
+
+
+        /* ==============================
+           제목 - 물방울체
+        ============================== */
+
+        .hero h1 {
+            margin-bottom: 18px;
+
+            font-family: "물방울체", sans-serif;
+
+            font-size: 43px;
+            line-height: 1.35;
+            font-weight: 400;
+
+            color: #202650;
+
+            letter-spacing: -1px;
+        }
+
+
+        /* ==============================
+           설명 - 페이퍼로지
+        ============================== */
+
+        .hero-description {
+            width: 510px;
+            max-width: 100%;
+
+            margin: 0 auto;
+
+            color: #3e4774;
+
+            font-family: "페이퍼로지", sans-serif;
+
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+
+        /* ==============================
+           기능 3개
+        ============================== */
+
+        .features {
+            position: relative;
+            z-index: 12;
+
+            width: 710px;
+            max-width: 100%;
+
+            margin: 36px auto 0;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+
+            margin: 0 auto 7px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 27px;
+        }
+
+        .feature h2 {
+            margin-bottom: 8px;
+
+            font-family: "페이퍼로지", sans-serif;
+
+            color: #272e5e;
+
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .feature p {
+            max-width: 190px;
+            margin: 0 auto;
+
+            color: #4b5683;
+
+            font-family: "페이퍼로지", sans-serif;
+
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+
+        /* ==============================
+           중앙 버튼
+        ============================== */
+
+        .hero-buttons {
+            position: relative;
+            z-index: 15;
+
+            display: flex;
+            justify-content: center;
+
+            gap: 13px;
+
+            margin-top: 29px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 23px;
+
+            border-radius: 30px;
+
+            font-family: "페이퍼로지", sans-serif;
+
+            font-size: 12px;
+            font-weight: 500;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #ffffff;
+            background: #737fdd;
+
+            box-shadow:
+                0 6px 15px
+                rgba(64, 72, 150, 0.22);
+        }
+
+        .button-secondary {
+            color: #2c3467;
+            background: #ffffff;
+
+            box-shadow:
+                0 6px 15px
+                rgba(64, 72, 150, 0.22);
+        }
+
+
+        /* ==============================
+           방송 / 김천용 / 소통
+        ============================== */
+
+        .nav-links {
+            position: relative;
+            z-index: 20;
+
+            display: flex;
+            justify-content: center;
+
+            gap: 31px;
+
+            margin-top: 20px;
+        }
+
+        .nav-links a {
+            color: #252c5c;
+
+            font-family: "페이퍼로지", sans-serif;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            transition:
+                opacity 0.2s,
+                transform 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.55;
+            transform: translateY(-1px);
+        }
+
+
+        /* ==============================
+           풍경
+        ============================== */
+
+        .landscape {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 42%;
+
+            z-index: 3;
+        }
+
+
+        /* ==============================
+           나무
+        ============================== */
+
+        .tree {
+            position: absolute;
+
+            bottom: 23%;
+
+            width: 55px;
+            height: 150px;
+        }
+
+        .tree::before {
+            content: "";
+
+            position: absolute;
+
+            left: 21px;
+            bottom: 0;
+
+            width: 14px;
+            height: 62px;
+
+            background: #57506b;
+
+            border: 2px solid #37364c;
+        }
+
+        .tree::after {
+            content: "";
+
+            position: absolute;
+
+            left: -2px;
+            top: 0;
+
+            width: 60px;
+            height: 105px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #b5c0f4 0%,
+                    #c7cff8 35%,
+                    #8c9adf 70%,
+                    #6978c4 100%
+                );
+
+            clip-path: polygon(
+                50% 0%,
+                75% 28%,
+                65% 28%,
+                88% 52%,
+                70% 52%,
+                100% 82%,
+                0% 82%,
+                30% 52%,
+                12% 52%,
+                35% 28%,
+                25% 28%
+            );
+        }
+
+        .tree-1 {
+            left: 7%;
+            transform: scale(1.25);
+        }
+
+        .tree-2 {
+            left: 17%;
+            transform: scale(.85);
+        }
+
+        .tree-3 {
+            left: 24%;
+            transform: scale(.72);
+        }
+
+        .tree-4 {
+            right: 7%;
+            transform: scale(1.25);
+        }
+
+        .tree-5 {
+            right: 17%;
+            transform: scale(.88);
+        }
+
+        .tree-6 {
+            right: 24%;
+            transform: scale(.75);
+        }
+
+
+        /* ==============================
+           사람
+        ============================== */
+
+        .person {
+            position: absolute;
+
+            left: 39%;
+            bottom: 22%;
+
+            width: 45px;
+            height: 90px;
+
+            z-index: 7;
+        }
+
+        .person-head {
+            position: absolute;
+
+            top: 0;
+            left: 17px;
+
+            width: 20px;
+            height: 24px;
+
+            background: #f3eee4;
+
+            border: 2px solid #50425e;
+            border-radius: 8px;
+        }
+
+        .person-body {
+            position: absolute;
+
+            left: 12px;
+            top: 24px;
+
+            width: 31px;
+            height: 43px;
+
+            background: #817fdd;
+
+            border: 2px solid #50425e;
+
+            border-radius:
+                8px 8px 4px 4px;
+        }
+
+        .person-leg {
+            position: absolute;
+
+            width: 7px;
+            height: 30px;
+
+            bottom: 0;
+
+            background: #e7d8d5;
+
+            border: 2px solid #50425e;
+        }
+
+        .person-leg.left {
+            left: 13px;
+        }
+
+        .person-leg.right {
+            left: 28px;
+        }
+
+
+        /* ==============================
+           낚싯대
+        ============================== */
+
+        .fishing-rod {
+            position: absolute;
+
+            left: 41%;
+            bottom: 27%;
+
+            width: 135px;
+            height: 2px;
+
+            background: #41384f;
+
+            transform: rotate(-39deg);
+            transform-origin: left center;
+
+            z-index: 8;
+        }
+
+        .fishing-line {
+            position: absolute;
+
+            left: 50%;
+            bottom: 16.5%;
+
+            width: 1px;
+            height: 100px;
+
+            background: #504861;
+
+            z-index: 7;
+        }
+
+
+        /* ==============================
+           꽃
+        ============================== */
+
+        .flower {
+            position: absolute;
+
+            bottom: 25%;
+
+            width: 15px;
+            height: 15px;
+
+            background: #8f7fe2;
+
+            border-radius: 50%;
+
+            z-index: 8;
+        }
+
+        .flower::after {
+            content: "";
+
+            position: absolute;
+
+            left: 7px;
+            top: 13px;
+
+            width: 2px;
+            height: 25px;
+
+            background: #54577a;
+        }
+
+        .flower-1 {
+            left: 17%;
+        }
+
+        .flower-2 {
+            left: 64%;
+        }
+
+
+        /* ==============================
+           땅
+        ============================== */
+
+        .land {
+            position: absolute;
+
+            left: 0;
+            bottom: 13%;
+
+            width: 100%;
+            height: 13%;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #58639a 0px,
+                    #58639a 4px,
+                    #7580b3 4px,
+                    #7580b3 9px,
+                    #4b5686 9px,
+                    #4b5686 13px
+                );
+
+            border-top:
+                2px solid #343c68;
+        }
+
+
+        /* ==============================
+           물
+        ============================== */
+
+        .water {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 13%;
+
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255,255,255,0.28) 0px,
+                    rgba(255,255,255,0.28) 1px,
+                    transparent 1px,
+                    transparent 13px
+                ),
+                #7f91d3;
+
+            border-top:
+                2px solid #4a578d;
+        }
+
+
+        /* ==============================
+           모바일
+        ============================== */
+
+        @media (max-width: 800px) {
+
+            .page {
+                width: 96%;
+                height: 760px;
+                margin: 20px auto;
+            }
+
+            .hero {
+                margin-top: 30px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero-description {
+                font-size: 10px;
+            }
+
+            .features {
+                width: 90%;
+                gap: 10px;
+            }
+
+            .feature h2 {
+                font-size: 12px;
+            }
+
+            .feature p {
+                font-size: 9px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .tree {
+                transform: scale(.75);
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .page {
+                height: 700px;
+            }
+
+            .hero {
+                margin-top: 25px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero-description {
+                font-size: 9px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                margin-top: 25px;
+            }
+
+            .feature:nth-child(n+2) {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .hero-buttons {
+                margin-top: 22px;
+            }
+
+            .tree-1,
+            .tree-4 {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<main class="page">
+
+    <!-- 밤하늘 -->
+    <div class="starry-sky"></div>
+
+
+    <!-- 메인 -->
+    <section class="hero">
+
+        <h1>
+            천용이를 <br>
+            소개합니다
+        </h1>
+
+
+        <p class="hero-description">
+            염라대왕한테 알상태로 인간계에 버려진용이다 인간에게 주워져 키워짐<br>
+            아직 인간폼을 찾는중이라 역린이 존재함 오른쪽볼에 붕대가 그런의미<br>
+            인간계에 오래머물면서 용의 언어를 모르지만 정체성을 찾는중<br>
+            오래머물면서 인간들의 생활습관을 배워가는중<br>
+        </p>
+
+
+        <!-- 기능 3개 -->
+        <div
+            class="features"
+            id="features"
+        >
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    🗨️
+                </div>
+
+                <h2>
+                    저스트채팅
+                </h2>
+
+                <p>
+                    나를 돌아보고 잠시 쉬어 갈 수 있는<br>
+                    작은 공간을 준비했습니다.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    🎮
+                </div>
+
+                <h2>
+                    게임방송
+                </h2>
+
+                <p>
+                    글과 그림,
+                    자유로운 창작물을<br>
+                    만나볼 수 있는 공간입니다.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    🔔
+                </div>
+
+                <h2>
+                    소식 업데이트
+                </h2>
+
+                <p>
+                    이곳에서 방송 일정과 새로운 영상 소식을<br>
+                    편하게 확인해 보세요.
+                </p>
+
+            </article>
+
+        </div>
+
+
+        <!-- 중앙 버튼 -->
+        <div class="hero-buttons">
+
+            <a
+                href="https://chzzk.naver.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button-primary"
+            >
+                김천용의 생방송 →
+            </a>
+
+
+            <a
+                href="https://litt.ly/chdragon"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button-secondary"
+            >
+                김천용 알아보기
+            </a>
+
+        </div>
+
+
+        <!-- 방송 / 김천용 / 소통 -->
+        <nav class="nav-links">
+
+            <a href="#features">
+                방송
+            </a>
+
+            <a href="#about">
+                김천용
+            </a>
+
+            <a href="#contact">
+                소통
+            </a>
+
+        </nav>
+
+    </section>
+
+
+    <!-- 아래 픽셀 풍경 -->
+    <div class="landscape">
+
+        <!-- 나무 -->
+        <div class="tree tree-1"></div>
+        <div class="tree tree-2"></div>
+        <div class="tree tree-3"></div>
+
+        <div class="tree tree-4"></div>
+        <div class="tree tree-5"></div>
+        <div class="tree tree-6"></div>
+
+
+        <!-- 사람 -->
+        <div class="person">
+
+            <div class="person-head"></div>
+
+            <div class="person-body"></div>
+
+            <div class="person-leg left"></div>
+
+            <div class="person-leg right"></div>
+
+        </div>
+
+
+        <!-- 낚싯대 -->
+        <div class="fishing-rod"></div>
+
+        <div class="fishing-line"></div>
+
+
+        <!-- 꽃 -->
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+
+
+        <!-- 땅 -->
+        <div class="land"></div>
+
+
+        <!-- 물 -->
+        <div class="water"></div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
